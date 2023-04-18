@@ -38,9 +38,15 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="Chapter2.cpp" />
+    <ClCompile Include="LedDriverTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestProject_C\TestProject_C.vcxproj">
+      <Project>{aa0b76e5-99de-4c87-97f9-e283bcf18fd4}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
@@ -72,6 +78,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <UseStandardPreprocessor>false</UseStandardPreprocessor>
+      <AdditionalIncludeDirectories>C:\GitLab\TDD_C_Book\TestProject_C;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
