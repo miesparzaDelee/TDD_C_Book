@@ -38,7 +38,12 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="Chapter2.cpp" />
+    <ClCompile Include="FakeTimeService.c" />
+    <ClCompile Include="FakeTimeServiceTest.cpp" />
     <ClCompile Include="LedDriverTests.cpp" />
+    <ClCompile Include="LightControllerSpy.c" />
+    <ClCompile Include="LightControllerSpyTest.cpp" />
+    <ClCompile Include="LightSchedullerTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -47,6 +52,10 @@
     <ProjectReference Include="..\TestProject_C\TestProject_C.vcxproj">
       <Project>{aa0b76e5-99de-4c87-97f9-e283bcf18fd4}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FakeTimeService.h" />
+    <ClInclude Include="LightControllerSpy.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

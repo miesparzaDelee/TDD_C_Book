@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Chapter2.cpp" />
+    <ClCompile Include="LedDriverTests.cpp" />
+    <ClCompile Include="LightSchedullerTests.cpp">
+      <Filter>Chapter8</Filter>
+    </ClCompile>
+    <ClCompile Include="LightControllerSpy.c">
+      <Filter>Chapter8</Filter>
+    </ClCompile>
+    <ClCompile Include="LightControllerSpyTest.cpp">
+      <Filter>Chapter8</Filter>
+    </ClCompile>
+    <ClCompile Include="FakeTimeService.c">
+      <Filter>Chapter8</Filter>
+    </ClCompile>
+    <ClCompile Include="FakeTimeServiceTest.cpp">
+      <Filter>Chapter8</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Chapter8">
+      <UniqueIdentifier>{84abd414-1670-4334-9bda-da785ea117cb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LightControllerSpy.h">
+      <Filter>Chapter8</Filter>
+    </ClInclude>
+    <ClInclude Include="FakeTimeService.h">
+      <Filter>Chapter8</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
