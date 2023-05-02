@@ -10,6 +10,8 @@ typedef struct
 
 Time * TimeService_GetTime(Time * time);
 
-void TimeService_SetPeriodicAlarm(void);
+void TimeService_SetPeriodicAlarm(int seconds, void (*callback)(void));
+
+void TimeService_CancelPeriodicAlarm(void (*callback)(void));
 
 #endif

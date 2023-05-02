@@ -3,6 +3,8 @@
 static int timeRet = TIME_UNKNOWN;
 static int dayRet = TIME_UNKNOWN;
 
+static void (*alarm)(void);
+
 Time * TimeService_GetTime(Time* time)
 {
 	time->minuteOfDay = timeRet;
@@ -10,8 +12,15 @@ Time * TimeService_GetTime(Time* time)
 	return time;
 }
 
-void TimeService_SetPeriodicAlarm(void) {
-	
+void TimeService_SetPeriodicAlarm(int seconds, void (* callback)(void)) 
+{
+	alarm = callback;
+}
+
+void TimeService_CancelPeriodicAlarm(void (*callback)(void))
+{
+	if (callback == alarm)
+		alarm = 0;
 }
 
 void FakeTimeService_SetMinute(int minute)
@@ -21,4 +30,9 @@ void FakeTimeService_SetMinute(int minute)
 
 void FakeTimeService_SetDay(Day day) {
 	dayRet = day;
+}
+
+void * FakeTimeService_GetAlarm()
+{
+	return (void*)alarm;
 }
