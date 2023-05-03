@@ -18,7 +18,6 @@ class SPrintFTest : public testing::Test
 		free(output);
 	}
 
-
 };
 
 static void expect(const char* s)

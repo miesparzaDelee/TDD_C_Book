@@ -1,10 +1,14 @@
 #include "LightScheduller.h"
 #include "LightController.h"
 #include "TimeService.h"
+#include "RandomMinute.h"
+#include <stdbool.h>
 
 #define LIGHT_SCHEDULER_NO_ID -1
 #define LIGHT_SCHEDULER_LIGHT_OFF 0
 #define LIGHT_SCHEDULER_LIGHT_ON 1
+#define MAX_EVENTS 128
+
 
 typedef struct
 {
@@ -15,16 +19,20 @@ typedef struct
 }ScheduledLightEvent;
 
 static ScheduledLightEvent scheduledLightEvent;
+static ScheduledLightEvent scheduledLightEvents[MAX_EVENTS];
 
-static void scheduleEvent(int id, Day day, int minuteOftheDay, int event);
-static void processEventDueNow(Time* time, ScheduledLightEvent* lightEvent);
-static int IsWeekend(ScheduledLightEvent* lightEvent, Time* time);
-static int isSameDay(ScheduledLightEvent* lightEvent, Time* time);
-static int isEveryDay(ScheduledLightEvent* lightEvent);
-static void operateLight(ScheduledLightEvent* lightEvent);
+static int scheduleEvent(int id, Day day, int minuteOftheDay, int event);
+static void processEventDueNow(Time * time, ScheduledLightEvent* lightEvent);
+static int IsWeekend(ScheduledLightEvent * lightEvent, Time* time);
+static int isSameDay(ScheduledLightEvent * lightEvent, Time* time);
+static int isEveryDay(ScheduledLightEvent * lightEvent);
+static void operateLight(ScheduledLightEvent * lightEvent);
+static int GetSchedulled(int id, Day day, int minuteOftheDay);
 
 void LightScheduller_Create()
 {
+    for (int i = 0; i < MAX_EVENTS; i++)
+        scheduledLightEvents[i].id = LIGHT_SCHEDULER_NO_ID;
     scheduledLightEvent.id = LIGHT_SCHEDULER_NO_ID;
     TimeService_SetPeriodicAlarm(60, LightScheduler_Wakeup);
 }
@@ -34,29 +42,72 @@ void LightScheduller_Destroy()
     TimeService_CancelPeriodicAlarm(LightScheduler_Wakeup);
 }
 
-void LightScheduler_ScheduleTurnOn(int id, Day day, int minuteOftheDay)
+int LightScheduler_ScheduleTurnOn(int id, Day day, int minuteOftheDay)
 {
-    scheduleEvent(id, day, minuteOftheDay, LIGHT_SCHEDULER_LIGHT_ON);
+   return scheduleEvent(id, day, minuteOftheDay, LIGHT_SCHEDULER_LIGHT_ON);
 }
 
-void LightScheduler_ScheduleTurnOff(int id, Day day, int minuteOftheDay)
+int LightScheduler_ScheduleTurnOff(int id, Day day, int minuteOftheDay)
 {
-    scheduleEvent(id, day, minuteOftheDay, LIGHT_SCHEDULER_LIGHT_OFF);
+   return scheduleEvent(id, day, minuteOftheDay, LIGHT_SCHEDULER_LIGHT_OFF);
+}
+
+int LightScheduler_Randomize(int id, Day day, int minuteOftheDay)
+{
+    int index = GetSchedulled(id, day, minuteOftheDay);
+    if (index != -1)
+    {
+        scheduledLightEvents[index].minuteOfDay += RandomMinute_Get();
+        return LS_OK;
+    }
+    return LS_NO_EVENT_SCHEDULED;
+}
+
+static int GetSchedulled(int id, Day day, int minuteOftheDay)
+{
+    for (int i = 0; i < MAX_EVENTS; i++)
+    {
+        if (scheduledLightEvents[i].id == id && scheduledLightEvents[i].reactionDay == day && scheduledLightEvents[i].minuteOfDay == minuteOftheDay)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int LightScheduler_ScheduleRemove(int id, Day day, int minuteOftheDay)
+{
+	int index = GetSchedulled(id, day, minuteOftheDay);
+	if (index != -1)
+	{
+		scheduledLightEvents[index].id = LIGHT_SCHEDULER_NO_ID;
+		return LS_OK;
+	}
+	return LS_NO_EVENT_SCHEDULED;
 }
 
 void LightScheduler_Wakeup()
 {
     Time time;
     TimeService_GetTime(&time);
-    processEventDueNow(&time, &scheduledLightEvent);
+    for(int i = 0; i < MAX_EVENTS; i++)
+        processEventDueNow(&time, scheduledLightEvents + i);
 }
 
-void scheduleEvent(int id, Day day, int minuteOftheDay, int event)
+int scheduleEvent(int id, Day day, int minuteOftheDay, int event)
 {
-    scheduledLightEvent.id = id;
-    scheduledLightEvent.reactionDay = day;
-    scheduledLightEvent.minuteOfDay = minuteOftheDay;
-    scheduledLightEvent.event = event;
+    for (int i = 0; i < MAX_EVENTS; i++)
+    {
+        if (scheduledLightEvents[i].id == LIGHT_SCHEDULER_NO_ID)
+        {
+            scheduledLightEvents[i].id = id;
+            scheduledLightEvents[i].reactionDay = day;
+            scheduledLightEvents[i].minuteOfDay = minuteOftheDay;
+            scheduledLightEvents[i].event = event;
+            return LS_OK;
+        }
+    }
+    return LS_TOO_MANY_EVENTS;
 }
 
 void processEventDueNow(Time* time, ScheduledLightEvent * lightEvent)

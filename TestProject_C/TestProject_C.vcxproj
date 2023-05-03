@@ -22,11 +22,13 @@
     <ClCompile Include="..\src\LedDriver.c" />
     <ClCompile Include="..\src\LightScheduller.c" />
     <ClCompile Include="..\src\LigthController.c" />
+    <ClCompile Include="..\src\RandomMinute.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\LedDriver.h" />
     <ClInclude Include="..\src\LightController.h" />
     <ClInclude Include="..\src\LightScheduller.h" />
+    <ClInclude Include="..\src\RandomMinute.h" />
     <ClInclude Include="..\src\TimeService.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

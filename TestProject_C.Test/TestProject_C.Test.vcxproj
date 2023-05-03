@@ -43,7 +43,9 @@
     <ClCompile Include="LedDriverTests.cpp" />
     <ClCompile Include="LightControllerSpy.c" />
     <ClCompile Include="LightControllerSpyTest.cpp" />
+    <ClCompile Include="LightSchedulerTest_Ch9.cpp" />
     <ClCompile Include="LightSchedullerTests.cpp" />
+    <ClCompile Include="RandomMinuteTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

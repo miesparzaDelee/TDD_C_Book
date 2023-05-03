@@ -30,3 +30,12 @@ TEST_F(LightControllerSpy, RememberTheLastLightIdControlled)
 	ASSERT_EQ(10, LightControllerSpy_GetLastId());
 	ASSERT_EQ(LIGHT_ON, LightControllerSpy_GetLastState());
 }
+
+TEST_F(LightControllerSpy, RememberAllLightStates)
+{
+	LightController_On(0);
+	LightController_Off(31);
+	ASSERT_EQ(LIGHT_ON, LightControllerSpy_GetLightState(0));
+	ASSERT_EQ(LIGHT_OFF, LightControllerSpy_GetLightState(31));
+}
+

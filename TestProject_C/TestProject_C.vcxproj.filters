@@ -27,6 +27,9 @@
     <ClInclude Include="..\src\TimeService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\RandomMinute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\LedDriver.c">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\LightScheduller.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\RandomMinute.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

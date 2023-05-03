@@ -18,6 +18,12 @@
     <ClCompile Include="FakeTimeServiceTest.cpp">
       <Filter>Chapter8</Filter>
     </ClCompile>
+    <ClCompile Include="RandomMinuteTest.cpp">
+      <Filter>Chapter 9</Filter>
+    </ClCompile>
+    <ClCompile Include="LightSchedulerTest_Ch9.cpp">
+      <Filter>Chapter 9</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -25,6 +31,9 @@
   <ItemGroup>
     <Filter Include="Chapter8">
       <UniqueIdentifier>{84abd414-1670-4334-9bda-da785ea117cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chapter 9">
+      <UniqueIdentifier>{493554f7-7c5b-47cc-a7d7-c0b4b92eb19c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
