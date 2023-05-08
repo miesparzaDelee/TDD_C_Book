@@ -30,6 +30,12 @@
     <ClInclude Include="..\src\RandomMinute.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\FlashDriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\IO_Flash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\LedDriver.c">
@@ -42,6 +48,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\RandomMinute.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\FlashDriver.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\IO_Flash.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
