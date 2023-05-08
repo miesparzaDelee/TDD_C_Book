@@ -24,6 +24,9 @@
     <ClCompile Include="LightSchedulerTest_Ch9.cpp">
       <Filter>Chapter 9</Filter>
     </ClCompile>
+    <ClCompile Include="FlashDriverTest.cpp">
+      <Filter>Chapter 10</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -35,6 +38,9 @@
     <Filter Include="Chapter 9">
       <UniqueIdentifier>{493554f7-7c5b-47cc-a7d7-c0b4b92eb19c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Chapter 10">
+      <UniqueIdentifier>{d14c3e78-3fea-40c3-85d9-048fd27844ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LightControllerSpy.h">
@@ -42,6 +48,9 @@
     </ClInclude>
     <ClInclude Include="FakeTimeService.h">
       <Filter>Chapter8</Filter>
+    </ClInclude>
+    <ClInclude Include="fff.h">
+      <Filter>Chapter 10</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -40,6 +40,7 @@
     <ClCompile Include="Chapter2.cpp" />
     <ClCompile Include="FakeTimeService.c" />
     <ClCompile Include="FakeTimeServiceTest.cpp" />
+    <ClCompile Include="FlashDriverTest.cpp" />
     <ClCompile Include="LedDriverTests.cpp" />
     <ClCompile Include="LightControllerSpy.c" />
     <ClCompile Include="LightControllerSpyTest.cpp" />
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FakeTimeService.h" />
+    <ClInclude Include="fff.h" />
     <ClInclude Include="LightControllerSpy.h" />
   </ItemGroup>
   <ItemDefinitionGroup />
